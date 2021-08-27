@@ -30,11 +30,13 @@
       <p-table [value]="lancamentos" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
-                <th>pessoa</th>
+                <th>Pessoa</th>
                 <th>Descricao</th>
                 <th class="col-data-header">Vencimento</th>
                 <th class="col-data-header">Pagamento</th>
                 <th class="col-valor-header">Valor</th>
+                <th class="col-acoes"></th>
+                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-lancamento>
@@ -43,11 +45,21 @@
                 <td>{{lancamento.descricao}}</td>
                 <td class="col-data-content">{{lancamento.dataVencimento}}</td>
                 <td class="col-data-content">{{lancamento.dataPagamento}}</td>
-                <td class="col-valor-content">{{lancamento.valor}}</td>
+                <td class="col-valor-content" [ngStyle]="{color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}">{{lancamento.valor}}</td>
+                <td>
+                  <a class="botoes-acoes" pButton icon="pi pi-pencil"></a>
+                  <button class="botoes-acoes" pButton icon="pi pi-trash"></button>
+                </td>
             </tr>
         </ng-template>
       </p-table>
 
     </div>
   </div>
+
+  <div class="p-col-12">
+    <a pButton label="Novo Lancamento"></a>
+  </div>
+
+
 </div>

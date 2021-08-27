@@ -42,3 +42,16 @@ label{
 .col-data-content {
   text-align: center;
 }
+
+.col-acoes{
+  width: 120px;
+  text-align: center;
+
+}
+
+.botoes-acoes{
+  width: 20px;
+  height: 30px;
+  align-items: center;
+  margin: 2px;
+}
