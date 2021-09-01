@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="p-grid">
+
+    <div class="p-col-12">
+      <h1>Pessoas</h1>
+    </div>
+
+    <div class="p-col-12 p-fluid">
+      <label>Nome</label>
+      <input pInputText type="text">
+    </div>
+
+    <div class="p-col-12">
+      <button pButton type="submit" label="Pesquisar"></button>
+    </div>
+
+    <div>
+      <div class="p-grid">
+        <div class="p-col-12">
+
+          <p-table [value]="pessoas" [paginator]="true" [rows]="5" [responsive]="true">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Status</th>
+                <th class="col-acoes-header"></th>
+              </tr>
+
+            </ng-template>
+
+            <ng-template pTemplate="body" let-pessoa>
+              <tr>
+                <td class="class-font">
+                  {{ pessoa.nome }}
+                </td>
+                <td class="class-font">
+                  {{pessoa.cidade}}
+                </td>
+                <td class="class-font">
+                  {{pessoa.estado}}
+                </td>
+                <td class="link-ativo">
+                  <a href="#" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top">{{pessoa.ativo ? 'Ativo' : 'Inativo'}}</a>
+                </td>
+                <td class="col-acoes">
+                  <span class="p-column-title"></span>
+                  <a class="botoes-acoes" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom"></a>
+                  <button class="botoes-acoes" pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                </td>
+              </tr>
+
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="5">
+                  Nenhuma pessoa encontrada
+                </td>
+              </tr>
+            </ng-template>
+
+          </p-table>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="p-col-12">
+    <a pButton label="Nova Pessoa"></a>
+  </div>
+
+</div>

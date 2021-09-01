@@ -56,6 +56,16 @@ label{
   margin: 2px;
 }
 
+.link-ativo a{
+  text-decoration: none;
+  color: #696969;
+}
+
+.class-font{
+  color: #696969;
+}
+
+
 
 @media (min-width: 40em) {
   .col-valor-header {
