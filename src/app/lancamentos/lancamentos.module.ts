@@ -13,6 +13,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { FocusInputDirective } from '../share/directives/focus-input.directive';
 
 
 
@@ -20,7 +21,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
   declarations: [
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent,
-    LancamentosGridComponent
+    LancamentosGridComponent,
+    FocusInputDirective
   ],
   imports: [
     CommonModule,

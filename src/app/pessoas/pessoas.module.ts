@@ -13,6 +13,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { SharedModule } from '../shared/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -27,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
     PessoaCadastroComponent
   ],
   imports: [
+    BrowserModule,
     CommonModule,
     FormsModule,
     InputTextModule,
