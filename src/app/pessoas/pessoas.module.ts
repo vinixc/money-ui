@@ -12,6 +12,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -35,7 +36,8 @@ import { DropdownModule } from 'primeng/dropdown';
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    InputNumberModule
+    InputNumberModule,
+    SharedModule
   ]
 })
 export class PessoasModule { }

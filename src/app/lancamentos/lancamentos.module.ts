@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { NgModule } from '@angular/core';
@@ -31,7 +32,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    InputNumberModule
+    InputNumberModule,
+    SharedModule
   ],
   exports:[
     LancamentosPesquisaComponent,
