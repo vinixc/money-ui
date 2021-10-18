@@ -1,3 +1,4 @@
+import { PessoasModule } from './pessoas/pessoas.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -18,11 +19,8 @@ import {InputMaskModule} from 'primeng/inputmask';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { FocusInputDirective } from './share/directives/focus-input.directive';
-import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { MessageComponent } from './message/message.component';
-import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 
 
@@ -30,15 +28,12 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
   declarations: [
     AppComponent,
     NavbarComponent,
-    PessoasPesquisaComponent,
     FocusInputDirective,
-    PessoaCadastroComponent,
-    MessageComponent,
-    PessoasGridComponent
-
+    MessageComponent
   ],
   imports: [
     LancamentosModule,
+    PessoasModule,
     BrowserModule,
     InputTextModule,
     ButtonModule,
