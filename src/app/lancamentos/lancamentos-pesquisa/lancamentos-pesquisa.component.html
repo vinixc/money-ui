@@ -1,5 +1,9 @@
 <div class="container">
+
+  <form autocomplete="off" (ngSubmit)="pesquisar()">
   <div class="grid">
+
+
 
     <div class="col-12">
       <h1>Lançamentos</h1>
@@ -7,7 +11,7 @@
 
     <div class="col-12 p-fluid ">
       <label>Descrição</label>
-      <input pInputText type="text" appFocusInput>
+      <input pInputText type="text" appFocusInput name="descricao" [(ngModel)]="descricao">
 
     </div>
 
@@ -21,8 +25,8 @@
     <div class="col-12">
       <button pButton  type="submit" label="Pesquisar"></button>
     </div>
-
   </div>
+  </form>
 
   <app-lancamentos-grid [lancamentos]="lancamentos"></app-lancamentos-grid>
 
