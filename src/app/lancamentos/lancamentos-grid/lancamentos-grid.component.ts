@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LazyLoadEvent } from 'primeng/api';
+import { LancamentoFiltro } from '../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-grid',
@@ -9,5 +11,13 @@ import { Component, Input, OnInit } from '@angular/core';
 export class LancamentosGridComponent {
 
   @Input() lancamentos : any[] = [];
+  @Input() totalRegistros = 0;
+  @Input() filtro = new LancamentoFiltro();
 
+  @Output() mudouDePagina : any = new EventEmitter();
+
+  aoMudarPagina(event : LazyLoadEvent){
+    const pagina = event!.first! / event!.rows!;
+    this.mudouDePagina.emit(pagina);
+  }
 }

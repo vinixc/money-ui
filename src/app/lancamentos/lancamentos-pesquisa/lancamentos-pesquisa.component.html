@@ -28,7 +28,7 @@
   </div>
   </form>
 
-  <app-lancamentos-grid [lancamentos]="lancamentos"></app-lancamentos-grid>
+  <app-lancamentos-grid (mudouDePagina)="mudouDePagina($event)" [lancamentos]="lancamentos" [totalRegistros]="totalRegistros" [filtro]="filtro"></app-lancamentos-grid>
 
     <div class="col-12">
       <a pButton label="Novo Lancamento"></a>
