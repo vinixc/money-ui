@@ -2,7 +2,7 @@
   <div class="grid">
     <div class="col-12">
 
-      <p-table [value]="pessoas" [paginator]="true" [rows]="5" [responsive]="true">
+      <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina" [responsive]="true" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
         <ng-template pTemplate="header">
           <tr>
             <th>Nome</th>
@@ -20,10 +20,10 @@
               {{ pessoa.nome }}
             </td>
             <td class="class-font">
-              {{pessoa.cidade}}
+              {{pessoa.endereco.cidade}}
             </td>
             <td class="class-font">
-              {{pessoa.estado}}
+              {{pessoa.endereco.estado}}
             </td>
             <td class="link-ativo">
               <a href="#" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top">{{pessoa.ativo ? 'Ativo' : 'Inativo'}}</a>
