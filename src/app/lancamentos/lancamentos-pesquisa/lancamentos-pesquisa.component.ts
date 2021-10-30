@@ -32,4 +32,10 @@ export class LancamentosPesquisaComponent implements OnInit{
   mudouDePagina(pagina = 0){
     this.pesquisar(pagina);
   }
+
+  excluir(lancamentos : any){
+    this.lancamentoService.excluir(lancamentos.id).then(() => {
+
+    });
+  }
 }

@@ -19,7 +19,7 @@ export class LancamentoService {
 
   lancamentoUrl = 'http://localhost:8080/lancamentos';
   token = `
-    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBtb25leWFwaS5jb20uYnIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwibm9tZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE2MzU2MjU5MjUsImF1dGhvcml0aWVzIjpbIlJPTEVfQ0FEQVNUUkFSX0NBVEVHT1JJQSIsIlJPTEVfUEVTUVVJU0FSX1BFU1NPQSIsIlJPTEVfUkVNT1ZFUl9QRVNTT0EiLCJST0xFX0NBREFTVFJBUl9MQU5DQU1FTlRPIiwiUk9MRV9QRVNRVUlTQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUkVNT1ZFUl9MQU5DQU1FTlRPIiwiUk9MRV9DQURBU1RSQVJfUEVTU09BIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIl0sImp0aSI6Ijc1ODQ4MGJlLTdkOTktNGM3ZC1hN2E2LThiMzVmMWMxMzkyOCIsImNsaWVudF9pZCI6ImFuZ3VsYXIifQ.MpMGpiZ6j5Zpn74CBsWAjhE08kYH_W5UxjT5QYtnuo8
+    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBtb25leWFwaS5jb20uYnIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwibm9tZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE2MzU2MjgwMTAsImF1dGhvcml0aWVzIjpbIlJPTEVfQ0FEQVNUUkFSX0NBVEVHT1JJQSIsIlJPTEVfUEVTUVVJU0FSX1BFU1NPQSIsIlJPTEVfUkVNT1ZFUl9QRVNTT0EiLCJST0xFX0NBREFTVFJBUl9MQU5DQU1FTlRPIiwiUk9MRV9QRVNRVUlTQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUkVNT1ZFUl9MQU5DQU1FTlRPIiwiUk9MRV9DQURBU1RSQVJfUEVTU09BIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIl0sImp0aSI6IjIwNzFhMDdlLWU5YTUtNDgxNi04MTM2LWE3YjMzYWE3MzExYyIsImNsaWVudF9pZCI6ImFuZ3VsYXIifQ.1EBfsO6Ov6Cl0YHNU6ZVDJgkwzKyWpwiGp1eKWr91Qs
   `;
 
   constructor(private http: HttpClient, private datePipe: DatePipe) { }
@@ -58,5 +58,13 @@ export class LancamentoService {
         return resultado;
       })
 
+  }
+
+  excluir(codigo: number) : Promise<void>{
+    const headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+
+    return this.http.delete<void>(`${this.lancamentoUrl}/${codigo}`, {headers})
+    .toPromise();
   }
 }
