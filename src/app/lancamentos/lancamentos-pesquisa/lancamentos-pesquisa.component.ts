@@ -1,5 +1,5 @@
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -33,9 +33,15 @@ export class LancamentosPesquisaComponent implements OnInit{
     this.pesquisar(pagina);
   }
 
-  excluir(lancamentos : any){
-    this.lancamentoService.excluir(lancamentos.id).then(() => {
-
+  excluir(obj : any){
+    this.lancamentoService.excluir(obj.lancamento.id).then(() => {
+      console.log(obj.table)
+      if(obj.table.first === 0){
+        this.pesquisar()
+     }else{
+       console.log('reset')
+       obj.table.reset();
+     }
     });
   }
 }

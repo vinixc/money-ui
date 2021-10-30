@@ -25,7 +25,11 @@ export class LancamentosGridComponent {
   }
 
   excluir(lancamento : any){
-    this.excluirLancamento.emit(lancamento);
-    this.tabela.reset();
+    const table = this.tabela;
+    const obj = {lancamento, table};
+
+    this.excluirLancamento.emit(obj);
+
+
   }
 }
