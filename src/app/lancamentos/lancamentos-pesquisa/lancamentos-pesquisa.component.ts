@@ -1,6 +1,6 @@
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -13,7 +13,11 @@ export class LancamentosPesquisaComponent implements OnInit{
   lancamentos : any[] = []
   filtro = new LancamentoFiltro();
 
-  constructor(private lancamentoService : LancamentoService,private messageService: MessageService){
+  constructor(
+    private lancamentoService : LancamentoService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+    ){
 
   }
 
@@ -34,7 +38,14 @@ export class LancamentosPesquisaComponent implements OnInit{
     this.pesquisar(pagina);
   }
 
+  confirmarExclusao(obj : any){
+    this.confirmationService.confirm({message: 'Tem certeza que deseja excluir?', accept: () => {
+      this.excluir(obj);
+    }})
+  }
+
   excluir(obj : any){
+
     this.lancamentoService.excluir(obj.lancamento.id).then(() => {
        if(obj.table.first === 0){
         this.pesquisar()

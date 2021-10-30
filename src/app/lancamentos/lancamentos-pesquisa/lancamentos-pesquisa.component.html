@@ -29,7 +29,7 @@
   </form>
 
   <app-lancamentos-grid
-    (mudouDePagina)="mudouDePagina($event)" (excluirLancamento)="excluir($event)"
+    (mudouDePagina)="mudouDePagina($event)" (excluirLancamento)="confirmarExclusao($event)"
     [lancamentos]="lancamentos" [totalRegistros]="totalRegistros" [filtro]="filtro"></app-lancamentos-grid>
 
     <div class="col-12">
