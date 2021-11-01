@@ -1,3 +1,5 @@
+import { CategoriaService } from './../../categorias/categoria.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -23,9 +25,24 @@ export class LancamentoCadastroComponent implements OnInit {
     {label:'Yasmin de Carvalho', value: 2}
   ];
 
-  constructor() { }
+  constructor(
+    private errorHandlerService: ErrorHandlerService,
+    private categoriasService : CategoriaService
+  ) { }
 
   ngOnInit(): void {
+    this.carregarCategorias();
+  }
+
+  carregarCategorias(){
+    return this.categoriasService.listarTodas().then(categorias =>{
+      this.categorias = categorias.map((c: any) => {
+        return {label: c.nome, value: c.id};
+      });
+    })
+    .catch(erro =>{
+      this.errorHandlerService.handle(erro);
+    })
   }
 
 }

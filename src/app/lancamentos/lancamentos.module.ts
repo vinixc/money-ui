@@ -15,6 +15,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FocusInputDirective } from '../share/directives/focus-input.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 
 
@@ -37,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DropdownModule,
     InputNumberModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    InputTextareaModule
 
   ],
   exports:[

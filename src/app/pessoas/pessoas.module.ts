@@ -14,6 +14,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
+import {InputMaskModule} from 'primeng/inputmask';
+
 
 
 
@@ -39,7 +41,8 @@ import { BrowserModule } from '@angular/platform-browser';
     SelectButtonModule,
     DropdownModule,
     InputNumberModule,
-    SharedModule
+    SharedModule,
+    InputMaskModule
   ]
 })
 export class PessoasModule { }
