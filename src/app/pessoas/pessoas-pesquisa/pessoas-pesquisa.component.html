@@ -15,7 +15,10 @@
         <button pButton type="submit" label="Pesquisar"></button>
       </div>
 
-      <app-pessoas-grid (mudouDePagina)="mudouDePagina($event)" [totalRegistros]="totalRegistros" [filtro]="filtro" [pessoas]="pessoas"></app-pessoas-grid>
+      <app-pessoas-grid
+      (excluirPessoa)="confirmarExclusao($event)"
+      (mudouDePagina)="mudouDePagina($event)"
+      [totalRegistros]="totalRegistros" [filtro]="filtro" [pessoas]="pessoas"></app-pessoas-grid>
 
     </div>
   </form>

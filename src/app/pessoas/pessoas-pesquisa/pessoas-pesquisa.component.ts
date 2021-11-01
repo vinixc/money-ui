@@ -1,6 +1,8 @@
 import { PessoasService } from './../pessoas.service';
 import { Component, OnInit } from '@angular/core';
 import { PessoaFiltro } from '../pessoas.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -13,7 +15,12 @@ export class PessoasPesquisaComponent implements OnInit {
   pessoas : any[] = [];
   filtro = new PessoaFiltro();
 
-  constructor(private pessoaService : PessoasService) { }
+  constructor(
+    private pessoaService : PessoasService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    private errorHandlerService : ErrorHandlerService
+    ) { }
 
   ngOnInit(): void {
 
@@ -30,6 +37,29 @@ export class PessoasPesquisaComponent implements OnInit {
 
   mudouDePagina(pagina = 0){
     this.pesquisar(pagina);
+  }
+
+  confirmarExclusao(obj : any){
+    this.confirmationService.confirm({message: 'Tem certeza que deseja excluir?', accept: () => {
+      this.excluir(obj);
+    }})
+  }
+
+  excluir(obj : any){
+
+    this.pessoaService.excluir(obj.pessoa.id).then(res =>{
+      if(obj.table.first === 0){
+        this.pesquisar()
+      }else{
+        obj.table.reset();
+      }
+
+      this.messageService.add({severity:'success', detail: 'Pessoa excluida com sucesso!'})
+    })
+    .catch(err =>{
+      this.errorHandlerService.handle(err);
+    })
+
   }
 
 }

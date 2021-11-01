@@ -65,4 +65,12 @@ export class PessoasService {
       })
 
   }
+
+  excluir(id : number){
+    const headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+
+    return this.http.delete<void>(`${this.pessoasUrl}/${id}`, {headers})
+    .toPromise();
+  }
 }
