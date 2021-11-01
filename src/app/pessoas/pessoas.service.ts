@@ -73,4 +73,14 @@ export class PessoasService {
     return this.http.delete<void>(`${this.pessoasUrl}/${id}`, {headers})
     .toPromise();
   }
+
+  ativarOrInativar(id: number, ativo : boolean){
+    let headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put<void>(`${this.pessoasUrl}/${id}/ativo`, ativo, {headers})
+    .toPromise();
+  }
 }

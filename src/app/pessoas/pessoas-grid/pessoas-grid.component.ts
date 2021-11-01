@@ -18,6 +18,7 @@ export class PessoasGridComponent {
 
   @ViewChild('tabela') tabela : any;
   @Output() excluirPessoa : any = new EventEmitter();
+  @Output() ativarOrInativa : any = new EventEmitter();
 
   @Output() mudouDePagina : any = new EventEmitter();
 
@@ -31,5 +32,11 @@ export class PessoasGridComponent {
     const obj = {pessoa, table};
 
     this.excluirPessoa.emit(obj);
+  }
+
+  ativarOrInativar(pessoa : any){
+    const table = this.tabela;
+    const obj = {pessoa, table};
+    this.ativarOrInativa.emit(obj);
   }
 }

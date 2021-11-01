@@ -18,6 +18,7 @@
       <app-pessoas-grid
       (excluirPessoa)="confirmarExclusao($event)"
       (mudouDePagina)="mudouDePagina($event)"
+      (ativarOrInativa)="ativarOrInativar($event)"
       [totalRegistros]="totalRegistros" [filtro]="filtro" [pessoas]="pessoas"></app-pessoas-grid>
 
     </div>

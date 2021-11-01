@@ -62,8 +62,8 @@ label{
 }
 
 .link-ativo a{
-  text-decoration: none;
-  color: #696969;
+  text-decoration: underline;
+  color: #93cbef;
 }
 
 .class-font{

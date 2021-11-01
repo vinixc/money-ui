@@ -48,11 +48,7 @@ export class PessoasPesquisaComponent implements OnInit {
   excluir(obj : any){
 
     this.pessoaService.excluir(obj.pessoa.id).then(res =>{
-      if(obj.table.first === 0){
-        this.pesquisar()
-      }else{
-        obj.table.reset();
-      }
+      this.reloadViewByObj(obj);
 
       this.messageService.add({severity:'success', detail: 'Pessoa excluida com sucesso!'})
     })
@@ -62,4 +58,23 @@ export class PessoasPesquisaComponent implements OnInit {
 
   }
 
+  ativarOrInativar(obj: any){
+
+    this.pessoaService.ativarOrInativar(obj.pessoa.id, !obj.pessoa.ativo).then(res => {
+
+      this.reloadViewByObj(obj);
+      this.messageService.add({severity:'success', detail: `Pessoa ${obj.pessoa.ativo ? 'inativada' : 'ativada'} com sucesso!`})
+    })
+    .catch(err =>{
+      this.errorHandlerService.handle(err);
+    })
+  }
+
+  private reloadViewByObj(obj : any){
+    if(obj.table.first === 0){
+      this.pesquisar()
+    }else{
+      obj.table.reset();
+    }
+  }
 }

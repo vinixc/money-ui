@@ -26,7 +26,7 @@
               {{pessoa.endereco.estado}}
             </td>
             <td class="link-ativo">
-              <a href="#" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top">{{pessoa.ativo ? 'Ativo' : 'Inativo'}}</a>
+              <a href="#" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top" (click)="ativarOrInativar(pessoa)">{{pessoa.ativo ? 'Ativo' : 'Inativo'}}</a>
             </td>
             <td class="col-acoes">
               <span class="p-column-title"></span>
