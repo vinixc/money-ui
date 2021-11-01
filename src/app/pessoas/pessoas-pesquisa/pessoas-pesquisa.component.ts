@@ -23,7 +23,6 @@ export class PessoasPesquisaComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
   }
 
   pesquisar(pagina = 0){
