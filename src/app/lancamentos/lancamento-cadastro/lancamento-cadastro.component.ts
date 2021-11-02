@@ -6,7 +6,7 @@ import { CategoriaService } from './../../categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Lancamento } from 'src/app/core/model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -39,7 +39,8 @@ export class LancamentoCadastroComponent implements OnInit {
     private pessoaService: PessoasService,
     private lancamentoService : LancamentoService,
     private messageService: MessageService,
-    private router: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -81,12 +82,13 @@ export class LancamentoCadastroComponent implements OnInit {
   adicionarLancamento(form : NgForm){
 
     this.lancamentoService.adicionar(this.lancamento)
-      .then(() => {
+      .then((lancamentoAdd) => {
 
         this.messageService.add({severity:'success', detail: 'Lançamento adicionado com sucesso!'});
 
-        form.reset();
-        this.lancamento = new Lancamento();
+        //form.reset();
+        //this.lancamento = new Lancamento();
+        this.router.navigate(['/lancamentos',lancamentoAdd.id])
 
       })
       .catch(erro =>{
@@ -109,7 +111,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
   carregaAlteracao(){
 
-    const id = this.router.snapshot.params['id'];
+    const id = this.route.snapshot.params['id'];
 
     if(id){
       this.lancamentoService.buscarPorId(id)
@@ -121,5 +123,11 @@ export class LancamentoCadastroComponent implements OnInit {
         });
     }
 
+  }
+
+  novo(form : NgForm){
+    form.reset(new Lancamento);
+
+    this.router.navigate(['lancamentos/novo'])
   }
 }

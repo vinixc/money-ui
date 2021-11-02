@@ -64,7 +64,7 @@
 
       <div class="col-12">
         <button type="submit" pButton label="Salvar" [disabled]="formCadatroLancamento.invalid"></button>
-        <button type="submit" pButton label="Novo" class="p-button-info"></button>
+        <button type="button" pButton label="Novo" class="p-button-info" (click)="novo(formCadatroLancamento)"></button>
         <a routerLink="/lancamentos">Voltar para a pesquisa</a>
 
       </div>
