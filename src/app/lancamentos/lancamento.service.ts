@@ -79,4 +79,45 @@ export class LancamentoService {
     return this.http.post<Lancamento>(this.lancamentoUrl, JSON.stringify(lancamento), {headers})
       .toPromise();
   }
+
+  atualizar(lancamento : Lancamento) : Promise<Lancamento>{
+
+    const headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+
+    return this.http.put<Lancamento>(`${this.lancamentoUrl}/${lancamento.id}`, JSON.stringify(lancamento), {headers})
+      .toPromise()
+      .then(lancamento =>{
+        this.converterStringParaDate([lancamento]);
+        return lancamento;
+      });
+  }
+
+  buscarPorId(id: number) : Promise<Lancamento>{
+
+    const headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+
+    return this.http.get<Lancamento>(`${this.lancamentoUrl}/${id}`, {headers})
+      .toPromise()
+      .then(lancamento => {
+        this.converterStringParaDate([lancamento]);
+        return lancamento;
+      })
+  }
+
+  private converterStringParaDate(lancamentos: Lancamento[]){
+
+    for(const lancamento of lancamentos){
+
+      let offset = new Date().getTimezoneOffset() * 600000;
+
+      lancamento.dataVencimento = new Date(new Date(lancamento.dataVencimento).getTime() + offset);
+
+      if(lancamento.dataPagamento){
+        lancamento.dataPagamento = new Date(new Date(lancamento.dataPagamento).getTime() + offset);
+
+      }
+    }
+  }
 }

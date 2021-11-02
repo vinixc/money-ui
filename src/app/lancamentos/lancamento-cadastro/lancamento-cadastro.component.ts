@@ -43,8 +43,8 @@ export class LancamentoCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.router.snapshot.params['id'])
 
+    this.carregaAlteracao();
     this.carregarCategorias();
     this.carregarPessoas();
   }
@@ -84,5 +84,21 @@ export class LancamentoCadastroComponent implements OnInit {
       .catch(erro =>{
         this.errorHandlerService.handle(erro);
       })
+  }
+
+  carregaAlteracao(){
+
+    const id = this.router.snapshot.params['id'];
+
+    if(id){
+      this.lancamentoService.buscarPorId(id)
+        .then(lancamento =>{
+          this.lancamento = lancamento;
+        })
+        .catch(erro =>{
+          this.errorHandlerService.handle(erro);
+        });
+    }
+
   }
 }
