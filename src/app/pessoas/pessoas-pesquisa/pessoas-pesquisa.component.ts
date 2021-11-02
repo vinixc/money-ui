@@ -39,9 +39,11 @@ export class PessoasPesquisaComponent implements OnInit {
   }
 
   confirmarExclusao(obj : any){
+
     this.confirmationService.confirm({message: 'Tem certeza que deseja excluir?', accept: () => {
       this.excluir(obj);
-    }})
+    }});
+
   }
 
   excluir(obj : any){

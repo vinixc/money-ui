@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pessoa } from '../core/model';
 
 export class PessoaFiltro{
   nome : string;
@@ -82,5 +83,16 @@ export class PessoasService {
 
     return this.http.put<void>(`${this.pessoasUrl}/${id}/ativo`, ativo, {headers})
     .toPromise();
+  }
+
+  adicionar(pessoa : Pessoa) : Promise<Pessoa>{
+
+    let headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.post<Pessoa>(this.pessoasUrl, JSON.stringify(pessoa), {headers})
+      .toPromise();
+
   }
 }
