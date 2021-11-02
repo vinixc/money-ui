@@ -59,7 +59,7 @@
       </div>
       <div class="col-12 p-fluid">
         <label>Observacao</label>
-        <textarea pInputTextarea rows="3" [(ngModel)]="lancamento.observacao"></textarea>
+        <textarea pInputTextarea rows="3" name="obs" #obj="ngModel" ngModel [(ngModel)]="lancamento.observacao"></textarea>
       </div>
 
       <div class="col-12">

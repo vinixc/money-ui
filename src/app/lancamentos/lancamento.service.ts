@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Lancamento } from '../core/model';
 
 export class LancamentoFiltro{
   descricao : string;
@@ -66,5 +67,16 @@ export class LancamentoService {
 
     return this.http.delete<void>(`${this.lancamentoUrl}/${codigo}`, {headers})
     .toPromise();
+  }
+
+  adicionar(lancamento : Lancamento) : Promise<Lancamento>{
+
+    let headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+    headers = headers.append('Content-Type', 'application/json');
+
+
+    return this.http.post<Lancamento>(this.lancamentoUrl, JSON.stringify(lancamento), {headers})
+      .toPromise();
   }
 }
