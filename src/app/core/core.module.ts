@@ -9,6 +9,7 @@ import { ToastModule } from 'primeng/toast';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { PessoasService } from '../pessoas/pessoas.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { RouterModule } from '@angular/router';
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -23,7 +24,8 @@ registerLocaleData(localePt, 'pt-BR');
   imports: [
     CommonModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule
   ],
   providers:[
     DatePipe,
