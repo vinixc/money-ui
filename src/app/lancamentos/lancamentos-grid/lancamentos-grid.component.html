@@ -22,7 +22,7 @@
               <td class="col-data-content">{{lancamento.dataPagamento | date:'dd/MM/y'}}</td>
               <td class="col-valor-content" [ngStyle]="{color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}">{{lancamento.valor | currency:'BRL':true:'1.2-2'}}</td>
               <td class="col-acoes">
-                <a class="botoes-acoes" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom"></a>
+                <a class="botoes-acoes" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom" [routerLink]="['/lancamentos',lancamento.id]"></a>
                 <button class="botoes-acoes" pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(lancamento)"></button>
               </td>
           </tr>
