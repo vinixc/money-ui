@@ -82,8 +82,9 @@ export class LancamentoService {
 
   atualizar(lancamento : Lancamento) : Promise<Lancamento>{
 
-    const headers = new HttpHeaders()
+    let headers = new HttpHeaders()
     .append('Authorization', `${this.token}`);
+    headers = headers.append('Content-Type', 'application/json');
 
     return this.http.put<Lancamento>(`${this.lancamentoUrl}/${lancamento.id}`, JSON.stringify(lancamento), {headers})
       .toPromise()
@@ -95,8 +96,9 @@ export class LancamentoService {
 
   buscarPorId(id: number) : Promise<Lancamento>{
 
-    const headers = new HttpHeaders()
+    let headers = new HttpHeaders()
     .append('Authorization', `${this.token}`);
+    headers = headers.append('Content-Type', 'application/json');
 
     return this.http.get<Lancamento>(`${this.lancamentoUrl}/${id}`, {headers})
       .toPromise()
@@ -110,7 +112,7 @@ export class LancamentoService {
 
     for(const lancamento of lancamentos){
 
-      let offset = new Date().getTimezoneOffset() * 600000;
+      let offset = new Date().getTimezoneOffset() * 60000;
 
       lancamento.dataVencimento = new Date(new Date(lancamento.dataVencimento).getTime() + offset);
 
