@@ -45,8 +45,6 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 
   ],
   exports:[
-    LancamentosPesquisaComponent,
-    LancamentoCadastroComponent
   ]
 })
 export class LancamentosModule { }

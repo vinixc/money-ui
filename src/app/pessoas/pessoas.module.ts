@@ -26,8 +26,6 @@ import {InputMaskModule} from 'primeng/inputmask';
     PessoasGridComponent
   ],
   exports:[
-    PessoasPesquisaComponent,
-    PessoaCadastroComponent
   ],
   imports: [
     BrowserModule,
