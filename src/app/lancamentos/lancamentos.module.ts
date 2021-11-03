@@ -1,4 +1,4 @@
-import { RouterModule } from '@angular/router';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
@@ -41,7 +41,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     SharedModule,
     BrowserAnimationsModule,
     InputTextareaModule,
-    RouterModule
+    LancamentosRoutingModule
 
   ],
   exports:[
