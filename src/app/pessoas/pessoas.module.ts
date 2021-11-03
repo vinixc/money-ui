@@ -15,6 +15,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import {InputMaskModule} from 'primeng/inputmask';
+import { PessoasRoutingModule } from './pessoas-routing.module';
 
 
 
@@ -40,7 +41,8 @@ import {InputMaskModule} from 'primeng/inputmask';
     DropdownModule,
     InputNumberModule,
     SharedModule,
-    InputMaskModule
+    InputMaskModule,
+    PessoasRoutingModule
   ]
 })
 export class PessoasModule { }

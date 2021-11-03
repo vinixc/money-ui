@@ -95,4 +95,24 @@ export class PessoasService {
       .toPromise();
 
   }
+
+  buscarPorId(id : number) : Promise<Pessoa>{
+
+    let headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.get<Pessoa>(`${this.pessoasUrl}/${id}`,{headers})
+      .toPromise();
+  }
+
+  alterar(pessoa : Pessoa) : Promise<Pessoa>{
+
+    let headers = new HttpHeaders()
+    .append('Authorization', `${this.token}`);
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.id}`, JSON.stringify(pessoa), {headers})
+      .toPromise();
+  }
 }

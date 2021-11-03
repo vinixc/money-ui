@@ -30,7 +30,7 @@
             </td>
             <td class="col-acoes">
               <span class="p-column-title"></span>
-              <a class="botoes-acoes" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom"></a>
+              <a class="botoes-acoes" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="bottom" [routerLink]="['/pessoas',pessoa.id]"></a>
               <button class="botoes-acoes" pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(pessoa)"></button>
             </td>
           </tr>

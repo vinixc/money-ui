@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PessoaFiltro } from '../pessoas.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -19,10 +20,12 @@ export class PessoasPesquisaComponent implements OnInit {
     private pessoaService : PessoasService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private errorHandlerService : ErrorHandlerService
+    private errorHandlerService : ErrorHandlerService,
+    private title: Title
     ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Pesquisa de Pessoas');
   }
 
   pesquisar(pagina = 0){
