@@ -11,6 +11,7 @@ import { PessoasService } from '../pessoas/pessoas.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -37,6 +38,7 @@ registerLocaleData(localePt, 'pt-BR');
     PessoasService,
     MessageService,
     ConfirmationService,
+    Title
   ]
 })
 export class CoreModule { }

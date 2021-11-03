@@ -2,6 +2,7 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -18,7 +19,8 @@ export class LancamentosPesquisaComponent implements OnInit{
     private lancamentoService : LancamentoService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private errorHandlerService : ErrorHandlerService
+    private errorHandlerService : ErrorHandlerService,
+    private title: Title
     ){
 
   }
@@ -37,6 +39,7 @@ export class LancamentosPesquisaComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.title.setTitle('Pesquisa de Lançamentos');
   }
 
   mudouDePagina(pagina = 0){
