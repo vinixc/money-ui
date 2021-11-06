@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,7 +8,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter(): string {
 
+  let token = localStorage.getItem('token');
+
+  if(token) return token;
+
+  return '';
+}
 
 @NgModule({
   declarations: [
@@ -21,9 +29,9 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     SegurancaRoutingModule,
     JwtModule.forRoot({
       config:{
-        tokenGetter: ()=>{
-          return '';
-        }
+        tokenGetter: tokenGetter,
+        allowedDomains: environment.tokenAllowedDomains,
+        disallowedRoutes: environment.tokenDisallowedRoutes,
       }
     })
   ],
@@ -32,3 +40,5 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
   ]
 })
 export class SegurancaModule { }
+
+

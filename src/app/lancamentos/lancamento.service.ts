@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -18,21 +19,17 @@ export class LancamentoFiltro{
 })
 export class LancamentoService {
 
-  lancamentoUrl = 'http://localhost:8080/lancamentos';
-  token = `
-    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBtb25leWFwaS5jb20uYnIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwibm9tZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE2NDA4MDAwMTksImF1dGhvcml0aWVzIjpbIlJPTEVfQ0FEQVNUUkFSX0NBVEVHT1JJQSIsIlJPTEVfUEVTUVVJU0FSX1BFU1NPQSIsIlJPTEVfUkVNT1ZFUl9QRVNTT0EiLCJST0xFX0NBREFTVFJBUl9MQU5DQU1FTlRPIiwiUk9MRV9QRVNRVUlTQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUkVNT1ZFUl9MQU5DQU1FTlRPIiwiUk9MRV9DQURBU1RSQVJfUEVTU09BIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIl0sImp0aSI6IjcwNjcxZTdmLWRkYTUtNDI0OC05YzJmLTc2Y2M0YzdlMDE0YyIsImNsaWVudF9pZCI6ImFuZ3VsYXIifQ.6uVLW6hxZRJ9JgeUoGjy2ONoCamTNLeactDHsQyasj4
-  `;
+  lancamentoUrl = environment.apiUrl + '/lancamentos';
 
   constructor(private http: HttpClient, private datePipe: DatePipe) { }
 
   pesquisar(filtro: LancamentoFiltro) : Promise<any>{
 
     let params = new HttpParams();
-    const headers = new HttpHeaders()
-    .append('Authorization', `${this.token}`);
 
     params = params.set('page', filtro.pagina);
     params = params.set('size', filtro.itensPorPagina);
+    params = params.set('sort', "id,desc");
 
     if(filtro.descricao){
       params = params.set('descricao', filtro.descricao);
@@ -46,7 +43,7 @@ export class LancamentoService {
       params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoFim, 'yyyy-MM-dd')!);
     }
 
-    return this.http.get(`${this.lancamentoUrl}?resumo`,{headers,params})
+    return this.http.get(`${this.lancamentoUrl}?resumo`, {params})
       .toPromise()
       .then((response : any) => {
         const lancamentos = response['content'];
@@ -62,30 +59,19 @@ export class LancamentoService {
   }
 
   excluir(codigo: number) : Promise<void>{
-    const headers = new HttpHeaders()
-    .append('Authorization', `${this.token}`);
-
-    return this.http.delete<void>(`${this.lancamentoUrl}/${codigo}`, {headers})
+    return this.http.delete<void>(`${this.lancamentoUrl}/${codigo}`)
     .toPromise();
   }
 
   adicionar(lancamento : Lancamento) : Promise<Lancamento>{
 
-    let headers = new HttpHeaders()
-    .append('Authorization', `${this.token}`);
-    headers = headers.append('Content-Type', 'application/json');
-
-
-    return this.http.post<Lancamento>(this.lancamentoUrl, JSON.stringify(lancamento), {headers})
+    let headers = new HttpHeaders().append('Content-Type', 'application/json');
+    return this.http.post<Lancamento>(this.lancamentoUrl, JSON.stringify(lancamento),{headers})
       .toPromise();
   }
 
   atualizar(lancamento : Lancamento) : Promise<Lancamento>{
-
-    let headers = new HttpHeaders()
-    .append('Authorization', `${this.token}`);
-    headers = headers.append('Content-Type', 'application/json');
-
+    let headers = new HttpHeaders().append('Content-Type', 'application/json');
     return this.http.put<Lancamento>(`${this.lancamentoUrl}/${lancamento.id}`, JSON.stringify(lancamento), {headers})
       .toPromise()
       .then(lancamento =>{
@@ -96,11 +82,7 @@ export class LancamentoService {
 
   buscarPorId(id: number) : Promise<Lancamento>{
 
-    let headers = new HttpHeaders()
-    .append('Authorization', `${this.token}`);
-    headers = headers.append('Content-Type', 'application/json');
-
-    return this.http.get<Lancamento>(`${this.lancamentoUrl}/${id}`, {headers})
+    return this.http.get<Lancamento>(`${this.lancamentoUrl}/${id}`)
       .toPromise()
       .then(lancamento => {
         this.converterStringParaDate([lancamento]);
