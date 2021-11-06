@@ -9,17 +9,17 @@
       </div>
 
       <div class="col-12 p-fluid">
-        <input pInputText placeholder="E-mail" type="text" name="email" ngModel #email="ngModel" required>
+        <input #emailInput pInputText placeholder="E-mail" type="text" name="email" ngModel #email="ngModel" required autofocus minlength="1">
       </div>
 
       <div class="col-12 p-fluid">
-        <input pInputText placeholder="Senha" type="password" name="senha" ngModel #senha="ngModel" required>
+        <input #senhaInput pInputText placeholder="Senha" type="password" name="senha" ngModel #senha="ngModel" required minlength="1">
       </div>
 
 
       <div class="col-12 p-fluid">
         <button pButton type="submit" label="Login" [disabled]="formLogin.invalid"
-        (click)="login(email.value,senha.value)"></button>
+        (click)="login(email.value,senha.value);formLogin.reset();emailInput.focus()"></button>
       </div>
 
 
