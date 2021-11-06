@@ -13,7 +13,7 @@ export class AppComponent {
   }
 
   exibirNavbar(){
-    return this.router.url !== 'login';
+    return this.router.url !== '/login';
   }
 
 }

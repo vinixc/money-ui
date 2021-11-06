@@ -1,3 +1,4 @@
+import { AuthService } from './../seguranca/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -38,7 +39,8 @@ registerLocaleData(localePt, 'pt-BR');
     PessoasService,
     MessageService,
     ConfirmationService,
-    Title
+    Title,
+    AuthService
   ]
 })
 export class CoreModule { }
