@@ -1,3 +1,4 @@
+import { SegurancaModule } from './seguranca/seguranca.module';
 import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     LancamentosModule,
     PessoasModule,
+    SegurancaModule,
     CoreModule,
     HttpClientModule,
     AppRoutingModule
