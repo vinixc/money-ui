@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { LancamentoFiltro } from '../lancamento.service';
@@ -18,6 +19,10 @@ export class LancamentosGridComponent {
   @Output() excluirLancamento : any = new EventEmitter();
 
   @ViewChild('tabela') tabela : any;
+
+  constructor(public auth : AuthService){
+
+  }
 
   aoMudarPagina(event : LazyLoadEvent){
     const pagina = event!.first! / event!.rows!;

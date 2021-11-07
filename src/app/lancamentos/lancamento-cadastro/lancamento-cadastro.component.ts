@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { MessageService } from 'primeng/api';
 import { LancamentoService } from './../lancamento.service';
 import { NgForm } from '@angular/forms';
@@ -42,7 +43,8 @@ export class LancamentoCadastroComponent implements OnInit {
     private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
-    private title: Title
+    private title: Title,
+    public auth : AuthService
   ) { }
 
   ngOnInit(): void {

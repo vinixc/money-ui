@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Pessoa } from './../../core/model';
 import { PessoasService } from './../pessoas.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,6 +24,7 @@ export class PessoaCadastroComponent implements OnInit {
     private title: Title,
     private router: Router,
     private route: ActivatedRoute,
+    public auth : AuthService
   ) { }
 
   ngOnInit(): void {

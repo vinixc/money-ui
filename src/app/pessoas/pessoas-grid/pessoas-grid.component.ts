@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
+import { AuthService } from 'src/app/seguranca/auth.service';
 import { PessoaFiltro } from '../pessoas.service';
 
 @Component({
@@ -21,6 +22,10 @@ export class PessoasGridComponent {
   @Output() ativarOrInativa : any = new EventEmitter();
 
   @Output() mudouDePagina : any = new EventEmitter();
+
+  constructor(public auth : AuthService){
+
+  }
 
   aoMudarPagina(event : LazyLoadEvent){
     const pagina = event!.first! / event!.rows!;

@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { PessoasService } from './../pessoas.service';
 import { Component, OnInit } from '@angular/core';
 import { PessoaFiltro } from '../pessoas.service';
@@ -21,7 +22,8 @@ export class PessoasPesquisaComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private errorHandlerService : ErrorHandlerService,
-    private title: Title
+    private title: Title,
+    public auth : AuthService
     ) { }
 
   ngOnInit(): void {
