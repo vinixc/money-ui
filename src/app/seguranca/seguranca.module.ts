@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { MoneyHttpInterceptor } from './money-http-interceptor';
 import { environment } from './../../environments/environment';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
@@ -43,7 +44,8 @@ export function tokenGetter(): string {
       provide: HTTP_INTERCEPTORS,
       useClass: MoneyHttpInterceptor,
       multi: true
-    }
+    },
+    AuthGuard
   ]
 })
 export class SegurancaModule { }
