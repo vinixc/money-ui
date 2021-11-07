@@ -1,3 +1,4 @@
+import { MoneyHttpInterceptor } from './money-http-interceptor';
 import { environment } from './../../environments/environment';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 export function tokenGetter(): string {
 
@@ -36,7 +38,12 @@ export function tokenGetter(): string {
     })
   ],
   providers:[
-    JwtHelperService
+    JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MoneyHttpInterceptor,
+      multi: true
+    }
   ]
 })
 export class SegurancaModule { }
