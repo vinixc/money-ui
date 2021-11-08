@@ -38,6 +38,7 @@ export function tokenGetter(): string {
       }
     })
   ],
+
   providers:[
     JwtHelperService,
     {

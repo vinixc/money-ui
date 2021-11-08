@@ -39,7 +39,6 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     DropdownModule,
     InputNumberModule,
     SharedModule,
-    BrowserAnimationsModule,
     InputTextareaModule,
     LancamentosRoutingModule
 

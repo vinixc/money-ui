@@ -13,6 +13,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
+
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
@@ -23,13 +24,15 @@ registerLocaleData(localePt, 'pt-BR');
   exports:[
     NavbarComponent,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    CommonModule
   ],
   imports: [
     CommonModule,
     ToastModule,
     ConfirmDialogModule,
     RouterModule
+
   ],
   providers:[
     DatePipe,

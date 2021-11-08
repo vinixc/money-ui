@@ -16,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import {InputMaskModule} from 'primeng/inputmask';
 import { PessoasRoutingModule } from './pessoas-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -31,6 +32,7 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
   imports: [
     BrowserModule,
     CommonModule,
+    RouterModule,
     FormsModule,
     InputTextModule,
     ButtonModule,
@@ -42,7 +44,8 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     InputNumberModule,
     SharedModule,
     InputMaskModule,
-    PessoasRoutingModule
+    PessoasRoutingModule,
+
   ]
 })
 export class PessoasModule { }
