@@ -1,7 +1,7 @@
 import { AuthService } from './../../seguranca/auth.service';
 import { MessageService } from 'primeng/api';
 import { LancamentoService } from './../lancamento.service';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { PessoasService } from './../../pessoas/pessoas.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -23,17 +23,13 @@ export class LancamentoCadastroComponent implements OnInit {
     {label: 'Despesa', value:'DESPESA'}
   ];
 
-  categorias = [
-    {label:'Alimentação', value:1},
-    {label:'Transporte', value:2}
-  ];
+  categorias = [];
 
-  pessoas = [
-    {label:'Vinicius de Carvalho', value: 1},
-    {label:'Yasmin de Carvalho', value: 2}
-  ];
+  pessoas = [];
 
   lancamento = new Lancamento();
+
+  formulario : FormGroup;
 
   constructor(
     private errorHandlerService: ErrorHandlerService,
@@ -44,15 +40,37 @@ export class LancamentoCadastroComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
-    public auth : AuthService
+    public auth : AuthService,
+    private formBuilder : FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.configurarFormulario();
     this.title.setTitle('Novo Lançamento');
 
     this.carregaAlteracao();
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  configurarFormulario(){
+    this.formulario = this.formBuilder.group({
+      id: [],
+      tipo : ['RECEITA', Validators.required],
+      dataVencimento : [null, Validators.required],
+      dataPagamento : [],
+      descricao : [null, [Validators.required, Validators.minLength(5)]],
+      valor : [null, Validators.required],
+      pessoa : this.formBuilder.group({
+        id : [null, Validators.required],
+        nome : []
+      }),
+      categoria : this.formBuilder.group({
+        id : [null, Validators.required],
+        nome : []
+      }),
+      observacao: []
+    });
   }
 
   carregarCategorias(){

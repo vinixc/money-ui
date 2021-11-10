@@ -5,7 +5,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -40,7 +40,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     InputNumberModule,
     SharedModule,
     InputTextareaModule,
-    LancamentosRoutingModule
+    LancamentosRoutingModule,
+    ReactiveFormsModule
 
   ],
   exports:[
