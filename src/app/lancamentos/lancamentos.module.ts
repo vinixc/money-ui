@@ -41,7 +41,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     SharedModule,
     InputTextareaModule,
     LancamentosRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
 
   ],
   exports:[

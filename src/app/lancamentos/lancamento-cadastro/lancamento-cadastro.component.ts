@@ -62,7 +62,9 @@ export class LancamentoCadastroComponent implements OnInit {
       valor : [null, Validators.required],
       pessoa : this.formBuilder.group({
         id : [null, Validators.required],
-        nome : []
+        nome : [],
+        ativo: [],
+
       }),
       categoria : this.formBuilder.group({
         id : [null, Validators.required],
@@ -122,7 +124,7 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.atualizar(this.formulario.value)
       .then(lancamento => {
         //this.lancamento = lancamento;
-        this.formulario.setValue(lancamento);
+        this.formulario.patchValue(lancamento);
         this.messageService.add({severity:'success', detail: 'Lançamento atualizado com sucesso!'});
         this.atualizarTituloEdicao();
       })
@@ -141,7 +143,7 @@ export class LancamentoCadastroComponent implements OnInit {
       this.lancamentoService.buscarPorId(id)
         .then(lancamento =>{
           //this.lancamento = lancamento;
-          this.formulario.setValue(lancamento);
+          this.formulario.patchValue(lancamento);
           this.atualizarTituloEdicao();
         })
         .catch(erro =>{
