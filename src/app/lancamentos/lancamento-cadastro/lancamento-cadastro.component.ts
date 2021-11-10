@@ -1,7 +1,7 @@
 import { AuthService } from './../../seguranca/auth.service';
 import { MessageService } from 'primeng/api';
 import { LancamentoService } from './../lancamento.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PessoasService } from './../../pessoas/pessoas.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -58,7 +58,7 @@ export class LancamentoCadastroComponent implements OnInit {
       tipo : ['RECEITA', Validators.required],
       dataVencimento : [null, Validators.required],
       dataPagamento : [],
-      descricao : [null, [Validators.required, Validators.minLength(5)]],
+      descricao : [null, [this.validarObrigatoriedade, this.validarTamanhoMinimo(5)]],
       valor : [null, Validators.required],
       pessoa : this.formBuilder.group({
         id : [null, Validators.required],
@@ -72,6 +72,16 @@ export class LancamentoCadastroComponent implements OnInit {
       }),
       observacao: []
     });
+  }
+
+  validarObrigatoriedade(input : FormControl){
+    return (input.value ? null : {obrigatoriedade: true});
+  }
+
+  validarTamanhoMinimo(valor : number){
+    return (input : FormControl) =>{
+      return (!input.value || input.value.length >= valor) ? null : {tamanhoMinimo: {tamanho: valor}};
+    }
   }
 
   carregarCategorias(){
