@@ -29,7 +29,7 @@ export class LancamentoService {
 
     params = params.set('page', filtro.pagina);
     params = params.set('size', filtro.itensPorPagina);
-    params = params.set('sort', "id,desc");
+    params = params.set('sort', "dataVencimento,desc");
 
     if(filtro.descricao){
       params = params.set('descricao', filtro.descricao);
