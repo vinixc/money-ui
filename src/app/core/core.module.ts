@@ -1,3 +1,4 @@
+import { DashboardService } from './../dashboard/dashboard.service';
 import { AuthService } from './../seguranca/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -40,6 +41,7 @@ registerLocaleData(localePt, 'pt-BR');
     ErrorHandlerService,
     LancamentoService,
     PessoasService,
+    DashboardService,
     MessageService,
     ConfirmationService,
     Title,
