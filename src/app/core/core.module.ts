@@ -1,3 +1,4 @@
+import { RelatoriosService } from './../relatorios/relatorios.service';
 import { DashboardService } from './../dashboard/dashboard.service';
 import { AuthService } from './../seguranca/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
@@ -45,7 +46,8 @@ registerLocaleData(localePt, 'pt-BR');
     MessageService,
     ConfirmationService,
     Title,
-    AuthService
+    AuthService,
+    RelatoriosService
   ]
 })
 export class CoreModule { }
