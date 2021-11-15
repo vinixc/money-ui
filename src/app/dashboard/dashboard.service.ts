@@ -35,7 +35,7 @@ export class DashboardService {
 
     for (const dado of dados) {
       dado.dia =  new Date(new Date(dado.dia).getTime() + offset);
-      dado.dia = this.datePipe.transform(dado.dia,'YYYY-MM-DD')!
+
     }
   }
 }

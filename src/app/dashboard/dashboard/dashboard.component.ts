@@ -10,27 +10,13 @@ export class DashboardComponent implements OnInit {
 
   pieChartData :any;
 
-  lineChartData = {
-    labels: ['Domingo', 'Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta','Sabado'],
-    datasets:[
-      {
-        label: 'Receita',
-        data:[2500,2700,200,300,10,300,3400],
-        borderColor:'#3366CC'
-      },
-      {
-        label: 'Despesas',
-        data:[1500,1700,2200,1300,110,3100,1400],
-        borderColor:'#D62B00'
-      }
-
-    ]
-  };
+  lineChartData : any;
 
   constructor(private dashboardService : DashboardService) { }
 
   ngOnInit(): void {
     this.configurarGraficoPizza();
+    this.configurarGradicoLinha();
   }
 
 
@@ -49,6 +35,70 @@ export class DashboardComponent implements OnInit {
 
       });
 
+  }
+
+  configurarGradicoLinha(){
+    this.dashboardService.lancamentosPorDia()
+      .then(dados =>{
+
+        const diasPorMes = this.configurarDiasMes();
+        const totaisReceitas = this.totaisPorCadaDiaMes(dados.filter(d => d.tipo === 'RECEITA'), diasPorMes);
+        const totaisDespesas = this.totaisPorCadaDiaMes(dados.filter(d => d.tipo === 'DESPESA'), diasPorMes);
+
+        this.lineChartData = {
+          labels: diasPorMes,
+          datasets:[
+            {
+              label: 'Receita',
+              data:totaisReceitas,
+              borderColor:'#3366CC'
+            },
+            {
+              label: 'Despesas',
+              data:totaisDespesas,
+              borderColor:'#D62B00'
+            }
+
+          ]
+        };
+      })
+  }
+
+  private totaisPorCadaDiaMes(dados : any, diasDoMes: any){
+    const totais : number[] = [];
+    for (let dia of diasDoMes){
+      let total = 0;
+
+      for (let dado of dados){
+        if (dado.dia.getDate() === dia){
+          total = dado.total;
+
+          break;
+        }
+
+      }
+
+      totais.push(total);
+
+    }
+
+    return totais;
+  }
+
+  private configurarDiasMes(){
+    const mesReferencia = new Date();
+    mesReferencia.setMonth(mesReferencia.getMonth() + 1);
+    mesReferencia.setDate(0);
+
+    const quantidade = mesReferencia.getDate();
+
+    const dias : number[] = [];
+
+    for (let i = 1; i <= quantidade; i++){
+      dias.push(i);
+    }
+
+    return dias;
   }
 
 }
