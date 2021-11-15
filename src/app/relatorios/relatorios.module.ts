@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 
 import { RelatoriosRoutingModule } from './relatorios-routing.module';
 import { RelatorioLancamentosComponent } from './relatorio-lancamentos/relatorio-lancamentos.component';
+import { FormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -12,8 +15,12 @@ import { RelatorioLancamentosComponent } from './relatorio-lancamentos/relatorio
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RelatoriosRoutingModule,
-    SharedModule
+    SharedModule,
+
+    CalendarModule,
+    ButtonModule
   ]
 })
 export class RelatoriosModule { }
