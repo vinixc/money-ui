@@ -1,5 +1,5 @@
 import { AuthService } from './../../seguranca/auth.service';
-import { Pessoa } from './../../core/model';
+import { Contato, Pessoa } from './../../core/model';
 import { PessoasService } from './../pessoas.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
@@ -16,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
+  contato : Contato;
   exibindoFormularioContato = false;
 
   constructor(
@@ -99,5 +100,10 @@ export class PessoaCadastroComponent implements OnInit {
 
   atualizarTituloEdicao(){
     this.title.setTitle(`Edição de Pessoa: ${this.pessoa.nome}`);
+  }
+
+  inicializarNovoContato(){
+    this.contato = new Contato();
+    this.exibindoFormularioContato = true;
   }
 }
