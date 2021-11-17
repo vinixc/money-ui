@@ -14,6 +14,7 @@ export class Pessoa{
   nome: string;
   ativo: boolean = true;
   endereco = new Endereco();
+  contatos = new Array<Contato>();
 }
 
 export class Categoria{
@@ -30,4 +31,11 @@ export class Lancamento {
   observacao: string;
   pessoa = new Pessoa();
   categoria = new Categoria();
+}
+
+export class Contato{
+  id: number;
+  nome: string;
+  email: string;
+  telefone : string;
 }
