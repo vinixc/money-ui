@@ -16,9 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
-  contato : Contato;
-  contatoIndex: number;
-  exibindoFormularioContato = false;
+
 
   constructor(
     private pessoaService : PessoasService,
@@ -101,31 +99,5 @@ export class PessoaCadastroComponent implements OnInit {
 
   atualizarTituloEdicao(){
     this.title.setTitle(`Edição de Pessoa: ${this.pessoa.nome}`);
-  }
-
-  inicializarNovoContato(){
-    this.contato = new Contato();
-    this.exibindoFormularioContato = true;
-    this.contatoIndex = this.pessoa.contatos.length;
-  }
-
-  confirmarContato(form : NgForm){
-    this.pessoa.contatos[this.contatoIndex] = this.clonarContato(this.contato);
-    this.exibindoFormularioContato = false;
-    form.reset();
-  }
-
-  clonarContato(contato: Contato) : Contato {
-    return new Contato(contato.id, contato.nome, contato.email, contato.telefone);
-  }
-
-  prepararEdicaoContato(contato : Contato, index : number){
-    this.contato = this.clonarContato(contato);
-    this.exibindoFormularioContato = true;
-    this.contatoIndex = index;
-  }
-
-  removerContato(index : number){
-    this.pessoa.contatos.splice(index,1);
   }
 }
