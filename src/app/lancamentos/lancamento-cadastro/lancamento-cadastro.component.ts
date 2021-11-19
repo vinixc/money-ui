@@ -173,4 +173,12 @@ export class LancamentoCadastroComponent implements OnInit {
   atualizarTituloEdicao(){
     this.title.setTitle(`Edição de Lancamento: ${this.formulario.get('descricao')?.value}`);
   }
+
+  get urlUploadAnexo(){
+    return this.lancamentoService.urlUploadAnexo();
+  }
+
+  get uploadHeaders() {
+    return this.lancamentoService.uploadHeaders();
+  }
 }

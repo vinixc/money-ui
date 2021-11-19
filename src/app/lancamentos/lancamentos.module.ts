@@ -17,6 +17,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FocusInputDirective } from '../share/directives/focus-input.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {FileUploadModule} from 'primeng/fileupload';
+import {HttpClientModule} from '@angular/common/http';
+
+
 
 
 
@@ -42,7 +46,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     InputTextareaModule,
     LancamentosRoutingModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FileUploadModule,
+    HttpClientModule
 
   ],
   exports:[

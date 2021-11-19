@@ -104,4 +104,13 @@ export class LancamentoService {
       }
     }
   }
+
+  urlUploadAnexo() : string{
+    return `${this.lancamentoUrl}/anexo`
+  }
+
+  uploadHeaders() {
+    return new HttpHeaders()
+      .append('Authorization', 'Bearer ' + localStorage.getItem('token'))
+  }
 }
