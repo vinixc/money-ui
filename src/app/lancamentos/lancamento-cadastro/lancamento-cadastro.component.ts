@@ -202,8 +202,8 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   aoTerminarUploadAnexo(event : any){
-    const anexo = event.originalEvent.body;
 
+    const anexo = event.originalEvent.body;
     this.formulario.patchValue({
       anexo : anexo.nome,
       urlAnexo: anexo.url
@@ -214,5 +214,12 @@ export class LancamentoCadastroComponent implements OnInit {
   erroUpload(event : any){
     this.messageService.add({severity:'error', detail: 'Erro ao tentar enviar anexo!'});
     this.uploadEmAndamento = false;
+  }
+
+  removerAnexo(){
+    this.formulario.patchValue({
+      anexo: null,
+      urlAnexo: null
+    })
   }
 }
