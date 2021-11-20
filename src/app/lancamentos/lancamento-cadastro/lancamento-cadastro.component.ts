@@ -30,6 +30,8 @@ export class LancamentoCadastroComponent implements OnInit {
 
   formulario : FormGroup;
 
+  uploadEmAndamento = false;
+
   constructor(
     private errorHandlerService: ErrorHandlerService,
     private categoriasService : CategoriaService,
@@ -181,6 +183,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   get uploadHeaders() {
+
     return this.lancamentoService.uploadHeaders();
   }
 
@@ -194,6 +197,10 @@ export class LancamentoCadastroComponent implements OnInit {
     return '';
   }
 
+  antesUploadAnexo(event : any){
+    this.uploadEmAndamento = true;
+  }
+
   aoTerminarUploadAnexo(event : any){
     const anexo = event.originalEvent.body;
 
@@ -201,9 +208,11 @@ export class LancamentoCadastroComponent implements OnInit {
       anexo : anexo.nome,
       urlAnexo: anexo.url
     })
+    this.uploadEmAndamento = false;
   }
 
   erroUpload(event : any){
     this.messageService.add({severity:'error', detail: 'Erro ao tentar enviar anexo!'});
+    this.uploadEmAndamento = false;
   }
 }

@@ -18,6 +18,8 @@ import { FocusInputDirective } from '../share/directives/focus-input.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+
 import {HttpClientModule} from '@angular/common/http';
 
 
@@ -48,6 +50,7 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FileUploadModule,
+    ProgressSpinnerModule,
     HttpClientModule
 
   ],
