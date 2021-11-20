@@ -65,7 +65,8 @@
       chooseLabel="Anexar" accept="image/*,application/*"
       [headers]="uploadHeaders"
       [url]="urlUploadAnexo"
-      (onUpload)="aoTerminarUploadAnexo($event)"></p-fileUpload>
+      (onUpload)="aoTerminarUploadAnexo($event)"
+      (onError)="erroUpload($event)"></p-fileUpload>
 
       </div>
 

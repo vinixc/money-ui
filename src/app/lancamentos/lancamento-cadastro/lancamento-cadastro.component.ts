@@ -202,4 +202,8 @@ export class LancamentoCadastroComponent implements OnInit {
       urlAnexo: anexo.url
     })
   }
+
+  erroUpload(event : any){
+    this.messageService.add({severity:'error', detail: 'Erro ao tentar enviar anexo!'});
+  }
 }
