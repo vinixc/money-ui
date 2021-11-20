@@ -59,13 +59,18 @@
         <textarea pInputTextarea rows="3" name="obs" formControlName="observacao"></textarea>
       </div>
 
-      <div class="p-col-6 p-col-offset-6 p-md-2 p-fluid">
+      <div class="p-col-6 p-col-offset-6 p-md-2 p-fluid" *ngIf="!formulario.get('anexo')?.value">
 
         <p-fileUpload name="anexo" mode="basic" [auto]="true" [maxFileSize]="100000000"
       chooseLabel="Anexar" accept="image/*,application/*"
       [headers]="uploadHeaders"
-      [url]="urlUploadAnexo" ></p-fileUpload>
+      [url]="urlUploadAnexo"
+      (onUpload)="aoTerminarUploadAnexo($event)"></p-fileUpload>
 
+      </div>
+
+      <div class="p-col-12 p-fluid" *ngIf="formulario.get('anexo')?.value" dir="rtl">
+        <a target="_blank" pTooltip="Baixar anexo" tooltipPosition="top" [href]="formulario.get('urlAnexo')?.value">{{nomeAnexo}}</a>
       </div>
 
       <div class="col-12">
