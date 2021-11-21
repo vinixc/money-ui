@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
-
+  estados : any[];
 
   constructor(
     private pessoaService : PessoasService,
@@ -31,6 +31,18 @@ export class PessoaCadastroComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Nova Pessoa');
     this.carregaAlteracao();
+    this.carregarEstados();
+  }
+
+  carregarEstados(){
+    this.pessoaService.listarEstados()
+      .then(lista => {
+        this.estados = lista.map(uf => ({label: uf.nome, value: uf.id}))
+
+      })
+      .catch(error => {
+        this.errorHandlerService.handle(error);
+      });
   }
 
   salvar(form : NgForm){

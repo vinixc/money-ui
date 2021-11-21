@@ -25,7 +25,6 @@ import { PessoaCadastroContatoComponent } from './pessoa-cadastro-contato/pessoa
 
 
 
-
 @NgModule({
   declarations: [
     PessoasPesquisaComponent,
