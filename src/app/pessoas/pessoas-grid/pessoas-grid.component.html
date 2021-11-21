@@ -20,10 +20,10 @@
               {{ pessoa.nome }}
             </td>
             <td class="class-font">
-              {{pessoa.endereco.cidade}}
+              {{pessoa.endereco.cidade?.nome}}
             </td>
             <td class="class-font">
-              {{pessoa.endereco.estado}}
+              {{pessoa.endereco.cidade?.estado?.nome}}
             </td>
             <td class="link-ativo">
               <a [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top" (click)="ativarOrInativar(pessoa)">{{pessoa.ativo ? 'Ativo' : 'Inativo'}}</a>
