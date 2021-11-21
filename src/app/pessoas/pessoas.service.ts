@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Pessoa } from '../core/model';
+import { Cidade, Estado, Pessoa } from '../core/model';
 
 export class PessoaFiltro{
   nome : string;
@@ -17,6 +17,8 @@ export class PessoaFiltro{
 export class PessoasService {
 
   pessoasUrl =  environment.apiUrl + '/pessoas';
+  cidadesUrl = environment.apiUrl + "/cidades";
+  estadosUrl = environment.apiUrl + "/estados";
 
   constructor(private http: HttpClient, private datePipe: DatePipe) { }
 
@@ -99,5 +101,19 @@ export class PessoasService {
 
     return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.id}`, JSON.stringify(pessoa), {headers})
       .toPromise();
+  }
+
+  listarEstados() : Promise<Estado[]>{
+    return this.http.get<Estado[]>(this.estadosUrl)
+      .toPromise()
+  }
+
+  pesquisarCidades(estadoId: number) : Promise<Cidade[]>{
+    let params = new HttpParams();
+
+    params = params.set('estado',estadoId);
+
+    return this.http.get<Cidade[]>(this.cidadesUrl, {params})
+      .toPromise()
   }
 }

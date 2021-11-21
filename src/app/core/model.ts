@@ -1,13 +1,24 @@
 
+export class Estado{
+  id: number;
+  nome: string;
+}
+
+export class Cidade{
+  id: number;
+  nome: string;
+  endereco = new Estado();
+}
+
 export class Endereco{
   logradouro: string;
   numero: string;
   complemento: string;
   bairro: string;
   cep: string;
-  cidade: string;
-  estado: string;
+  cidade = new Cidade();
 }
+
 
 export class Pessoa{
   id: number;
