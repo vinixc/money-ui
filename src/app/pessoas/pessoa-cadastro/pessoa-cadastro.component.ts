@@ -50,7 +50,9 @@ export class PessoaCadastroComponent implements OnInit {
   carregarCidades(){
     this.pessoaService.pesquisarCidades(this.estadoSelecionado)
       .then(lista =>{
-        this.cidades = lista.map(cidade => ({label: cidade.nome, value: cidade.id}))
+        this.cidades = lista.map(cidade => ({label: cidade.nome, value: cidade.id}));
+
+
       })
       .catch(error => {
         this.errorHandlerService.handle(error);
@@ -112,6 +114,15 @@ export class PessoaCadastroComponent implements OnInit {
       this.pessoaService.buscarPorId(id)
         .then(pessoa =>{
           this.pessoa = pessoa;
+
+          if(this.pessoa.endereco.cidade){
+            this.estadoSelecionado =  this.pessoa.endereco.cidade.estado.id;
+          }
+
+          if(this.estadoSelecionado){
+            this.carregarCidades();
+          }
+
           this.atualizarTituloEdicao();
         })
         .catch(erro =>{

@@ -7,7 +7,7 @@ export class Estado{
 export class Cidade{
   id: number;
   nome: string;
-  endereco = new Estado();
+  estado = new Estado();
 }
 
 export class Endereco{
