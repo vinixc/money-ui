@@ -1,5 +1,5 @@
 import { AuthService } from './../../seguranca/auth.service';
-import { Contato, Pessoa } from './../../core/model';
+import { Contato, Estado, Pessoa } from './../../core/model';
 import { PessoasService } from './../pessoas.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
@@ -17,6 +17,8 @@ export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
   estados : any[];
+  cidades : any[];
+  estadoSelecionado : number;
 
   constructor(
     private pessoaService : PessoasService,
@@ -39,6 +41,16 @@ export class PessoaCadastroComponent implements OnInit {
       .then(lista => {
         this.estados = lista.map(uf => ({label: uf.nome, value: uf.id}))
 
+      })
+      .catch(error => {
+        this.errorHandlerService.handle(error);
+      });
+  }
+
+  carregarCidades(){
+    this.pessoaService.pesquisarCidades(this.estadoSelecionado)
+      .then(lista =>{
+        this.cidades = lista.map(cidade => ({label: cidade.nome, value: cidade.id}))
       })
       .catch(error => {
         this.errorHandlerService.handle(error);
